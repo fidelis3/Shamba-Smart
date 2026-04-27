@@ -261,7 +261,7 @@ export default function DiseasesPage() {
             className="relative mx-auto w-full max-w-5xl rounded-3xl border border-[#79ae49]/25 bg-[#f9fdf7] dark:bg-[#0e1712] shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="sticky top-0 z-10 rounded-t-3xl border-b border-[#79ae49]/15 dark:border-[#79ae49]/20 bg-[#f9fdf7]/95 dark:bg-[#0e1712]/95 backdrop-blur px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <div className="rounded-t-3xl border-b border-[#79ae49]/15 dark:border-[#79ae49]/20 bg-[#f9fdf7]/95 dark:bg-[#0e1712]/95 backdrop-blur px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
               <div>
                 <p className="mono text-[10px] uppercase tracking-[.12em] text-[#4f8a3c] dark:text-[#9fd387]">Diagnostics</p>
                 <h2 className="text-base sm:text-lg font-semibold text-[#173320] dark:text-[#e8f6e2] truncate max-w-[70vw]">
