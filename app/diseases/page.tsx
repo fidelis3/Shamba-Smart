@@ -305,7 +305,7 @@ export default function DiseasesPage() {
                 </section>
 
                 <section className="rounded-2xl border border-[#79ae49]/15 dark:border-[#79ae49]/20 bg-gradient-to-br from-[#79ae49]/10 to-[#5a8a31]/5 dark:from-[#1b2b1e] dark:to-[#101a13] p-4 sm:p-5">
-                  <h3 className="text-lg font-bold text-[#173320] dark:text-[#e8f6e2] mb-4">Actionable Advice</h3>
+                  <h3 className="text-lg font-bold text-[#173320] dark:text-[#e8f6e2] mb-4">Actionable advice</h3>
                   <ul className="space-y-3">
                     {report.advice.map((line, i) => (
                       <li key={`${line}-${i}`} className="flex items-start gap-3 p-3 rounded-xl border border-white/60 dark:border-white/5 bg-white/60 dark:bg-[#0a140d]/40 text-[13px] sm:text-sm text-[#1b3d26] dark:text-[#add39b]">
