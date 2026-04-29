@@ -324,25 +324,32 @@ export default function DiseasesPage() {
                 )}
 
                 <section className="rounded-2xl border border-[#79ae49]/15 dark:border-[#79ae49]/20 bg-white dark:bg-[#121d17] p-4 sm:p-5">
-                  <h3 className="text-lg font-bold text-[#173320] dark:text-[#e8f6e2] mb-4">Predicted Pathologies</h3>
+                  <h3 className="text-lg font-bold text-[#173320] dark:text-[#e8f6e2] mb-4">Predicted Pathology</h3>
                   <div className="space-y-4">
-                    {report.diseases.map((d, idx) => {
-                      const style = SEV_STYLES[d.severity] || SEV_STYLES.low;
+                    {(() => {
+                      const topDisease = [...report.diseases].sort((a, b) => b.probability - a.probability)[0];
+                      if (!topDisease) return null;
+                      const style = SEV_STYLES[topDisease.severity] || SEV_STYLES.low;
                       return (
-                        <div key={`${d.name}-${idx}`} className="space-y-2">
+                        <div className="space-y-2">
                           <div className="flex items-end justify-between gap-2">
                             <div>
-                              <p className={`font-semibold ${style.text}`}>{d.name}</p>
-                              <p className="mono text-[11px] uppercase tracking-[.08em] text-[#4c6652] dark:text-[#8aa68f]">{d.severity} risk</p>
+                              <p className={`font-semibold ${style.text}`}>{topDisease.name}</p>
+                              <p className="mono text-[11px] uppercase tracking-[.08em] text-[#4c6652] dark:text-[#8aa68f]">
+                                {topDisease.severity} risk
+                              </p>
                             </div>
-                            <p className="mono text-[12px] sm:text-[13px] text-[#173320] dark:text-[#e8f6e2]">{fmtPct(d.probability)}</p>
+                            <p className="mono text-[12px] sm:text-[13px] text-[#173320] dark:text-[#e8f6e2]">{fmtPct(topDisease.probability)}</p>
                           </div>
                           <div className="h-2 rounded-full bg-[#eaf2e5] dark:bg-[#0d1510] overflow-hidden">
-                            <div className={`${style.bar} h-full rounded-full`} style={{ width: `${Math.max(2, d.probability * 100)}%` }} />
+                            <div
+                              className={`${style.bar} h-full rounded-full`}
+                              style={{ width: `${Math.max(2, topDisease.probability * 100)}%` }}
+                            />
                           </div>
                         </div>
                       );
-                    })}
+                    })()}
                   </div>
                 </section>
 
