@@ -6,10 +6,7 @@ import { useAppContext } from "@/context/AppContext";
 import { Navbar } from "@/components/Navbar";
 import { ImageCard } from "@/components/ImageCard";
 import { CameraModal } from "@/components/CameraModal";
-import { LocationModal } from "@/components/LocationModal";
 import { SEV_STYLES, URGENCY, fmtPct, fmtTime } from "@/lib/utils";
-
-const LOCATION_PROMPT_KEY = "shambasmart:location-prompted:v1";
 
 export default function DiseasesPage() {
   const {
@@ -19,14 +16,11 @@ export default function DiseasesPage() {
     removeImage,
     setActiveId,
     activeId,
-    requestLocation,
-    locationStatus,
   } = useAppContext();
 
   const [dragOver, setDragOver] = useState(false);
   const [cameraOpen, setCameraOpen] = useState(false);
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
-  const [locationModalOpen, setLocationModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const doneImages = images.filter((i) => i.status === "done" && i.report);
@@ -46,28 +40,6 @@ export default function DiseasesPage() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  useEffect(() => {
-    if (locationStatus !== "idle") return;
-    try {
-      if (sessionStorage.getItem(LOCATION_PROMPT_KEY) === "1") return;
-    } catch {
-      // Ignore storage errors and still allow prompting.
-    }
-    setLocationModalOpen(true);
-  }, [locationStatus]);
-
-  const handleLocationResult = async (allow: boolean) => {
-    setLocationModalOpen(false);
-    try {
-      sessionStorage.setItem(LOCATION_PROMPT_KEY, "1");
-    } catch {
-      // Ignore storage errors.
-    }
-    if (allow) {
-      await requestLocation();
-    }
-  };
-
   return (
     <div className="min-h-screen bg-white dark:bg-[#0a0f0d] text-[#102015] dark:text-[#deecd8]">
       <Navbar />
@@ -85,14 +57,6 @@ export default function DiseasesPage() {
               </p>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              {locationStatus !== "granted" && (
-                <button
-                  onClick={() => setLocationModalOpen(true)}
-                  className="mono text-[11px] sm:text-[12px] px-3 py-2 rounded-xl border border-[#79ae49]/30 dark:border-[#79ae49]/35 text-[#2f5b24] dark:text-[#b8dfaa] hover:bg-[#79ae49]/10 transition-colors"
-                >
-                  {locationStatus === "requesting" ? "Requesting..." : "Enable Location"}
-                </button>
-              )}
               <Link
                 href="/"
                 className="mono text-[12px] px-3 py-2 rounded-xl border border-black/10 dark:border-white/8"
@@ -246,10 +210,6 @@ export default function DiseasesPage() {
             setCameraOpen(false);
           }}
         />
-      )}
-
-      {locationModalOpen && (
-        <LocationModal onResult={handleLocationResult} />
       )}
 
       {diagnosticsOpen && activeImage && report && (

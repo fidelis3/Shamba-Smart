@@ -10,8 +10,11 @@
         "MULT",
         "Multicrop",
         "Mwangi",
+        "neighbourhood",
         "Rainfed",
         "Recalc",
-        "Shamba"
+        "Shamba",
+        "shambasmart",
+        "subcounty"
     ]
 }
