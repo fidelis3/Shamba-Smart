@@ -5,86 +5,89 @@ const API_URL = "https://shambasmart-ai.onrender.com/detect_disease";
 // ─── Advice lookup per disease ────────────────────────────────────────────────
 const DISEASE_ADVICE: Record<string, string[]> = {
   Common_Rust: [
-    "Apply a foliar fungicide (e.g., azoxystrobin or propiconazole) as soon as possible.",
-    "Remove and dispose of heavily infected leaves to reduce spore spread.",
-    "Avoid overhead irrigation — wet leaves accelerate rust development.",
-    "Plant rust-resistant maize varieties in the next season.",
-    "Scout neighbouring plots; spray within 5–7 days if >30% of plants are affected.",
+    "Check nearby farms to see how bad the rust is.",
+    "Remove leaves with rust spots to slow the spread.",
+    "Stop using sprinklers that wet the leaves from above.",
+    "Spray fungicide (like azoxystrobin) right away.",
+    "Next season, plant rust-resistant maize varieties.",
   ],
   Northern_Leaf_Blight: [
-    "Apply a recommended fungicide (e.g., mancozeb or chlorothalonil) immediately.",
-    "Improve air circulation by thinning dense stands where possible.",
-    "Remove crop debris after harvest to eliminate overwintering spores.",
-    "Use certified disease-resistant seed varieties next planting season.",
-    "Rotate crops with non-host crops (e.g., legumes) to break the disease cycle.",
+    "Spray fungicide (like mancozeb) immediately.",
+    "Thin out dense plants so air can flow better.",
+    "Remove infected leaves to reduce spread.",
+    "After harvest, clear all dead plant parts.",
+    "Next season plant resistant varieties and rotate crops.",
   ],
   Fall_Armyworm: [
-    "Apply an approved insecticide (e.g., emamectin benzoate or spinetoram) promptly.",
-    "Scout fields early morning or late evening when larvae are most active.",
-    "Introduce natural predators such as parasitic wasps or earwigs where feasible.",
-    "Apply neem-based biopesticides as an alternative for early infestations.",
-    "Report heavy infestations to local agricultural extension officers.",
+    "Check plants early morning and evening for worms.",
+    "If you find many worms, spray insecticide right away.",
+    "Try neem spray for small infestations.",
+    "Introduce natural enemies like wasps if possible.",
+    "Tell your local agricultural officer if it's very bad.",
   ],
   Gray_Leaf_Spot: [
-    "Apply a foliar fungicide containing strobilurin or triazole compounds immediately.",
-    "Remove lower infected leaves to reduce humidity around the plant base.",
-    "Ensure proper spacing between plants to improve air circulation.",
-    "Practice crop rotation with non-host crops for at least 2 seasons.",
-    "Use resistant or tolerant maize hybrids in subsequent plantings.",
+    "Spray fungicide immediately.",
+    "Remove infected leaves, especially lower ones.",
+    "Space plants well apart for good air flow.",
+    "Next season plant resistant varieties.",
+    "Rotate your crops for at least 2 seasons.",
   ],
   Ear_Rot: [
-    "Harvest as soon as maize reaches physiological maturity to minimize infection.",
-    "Ensure proper drying of harvested grain to below 14% moisture content.",
-    "Apply appropriate fungicides during silking and early grain fill stages.",
-    "Remove and destroy infected ears to prevent toxin contamination.",
-    "Test grain for mycotoxins before storage or consumption — do not feed contaminated grain to livestock.",
+    "Spray fungicide when plants are flowering and making ears.",
+    "Make sure plants have good spacing for air flow.",
+    "Harvest as soon as the corn is ready.",
+    "Dry corn properly to below 14% moisture.",
+    "Check corn for toxins before storage.",
+    "Remove and burn any rotted ears.",
   ],
   Stem_Borer: [
-    "Apply a systemic insecticide (e.g., chlorantraniliprole) targeting young larvae.",
-    "Remove and destroy plant debris harboring overwintering larvae.",
-    "Use pheromone traps to monitor and reduce adult moth populations.",
-    "Plant push-pull companion crops (e.g., Desmodium and Napier grass) around maize fields.",
-    "Apply Bacillus thuringiensis (Bt) biopesticide for organic management.",
+    "Look for young worms in the stems.",
+    "Spray insecticide on young worms.",
+    "Plant companion crops like Desmodium around the field.",
+    "Use Bt spray if you farm organically.",
+    "Remove and burn all dead plant parts.",
   ],
   Grasshopper: [
-    "Apply contact insecticides (e.g., lambda-cyhalothrin) when grasshoppers are small and most vulnerable.",
-    "Use bran bait mixed with insecticide for localized infestations.",
-    "Encourage natural predators such as birds and parasitic flies.",
-    "Mow field borders and remove tall grasses where grasshoppers breed.",
-    "Monitor neighboring fields and coordinate control with nearby farmers.",
+    "Check for grasshoppers when they are young and small.",
+    "Spray insecticide when they are small.",
+    "Use bran mixed with insecticide for small areas.",
+    "Mow field borders to remove tall grass where they breed.",
+    "Encourage birds and parasitic flies.",
+    "Talk to neighboring farmers to control together.",
   ],
   Leaf_Beetle: [
-    "Apply a foliar insecticide targeting beetle larvae and adults.",
-    "Hand-pick beetles from plants if infestation is light and localized.",
-    "Remove and destroy heavily infested leaves.",
-    "Plant beetle-resistant maize varieties where available.",
-    "Maintain field hygiene by removing crop residues that harbor overwintering beetles.",
+    "Check plants for beetles.",
+    "If there are only a few, pick them by hand.",
+    "Remove and burn heavily infected leaves.",
+    "Spray insecticide if there are many beetles.",
+    "Next season plant beetle-resistant varieties.",
+    "Clear all dead plant parts after harvest.",
   ],
   Leaf_Blight: [
-    "Apply a broad-spectrum fungicide (e.g., tebuconazole) at first symptom appearance.",
-    "Improve field drainage to reduce leaf wetness duration.",
-    "Space plants adequately to enhance air circulation and reduce humidity.",
-    "Remove infected plant material and burn or bury it away from the field.",
-    "Rotate with non-susceptible crops to reduce pathogen buildup in soil.",
+    "Spray fungicide as soon as you see symptoms.",
+    "Improve drainage to keep leaves dry.",
+    "Space plants apart for good air flow.",
+    "Remove infected leaves and burn them away from the field.",
+    "Rotate with different crops to break the disease cycle.",
   ],
   Leaf_Spot: [
-    "Apply a protective fungicide (e.g., copper-based or mancozeb) early in the season.",
-    "Remove heavily spotted leaves to reduce inoculum spread.",
-    "Avoid working in fields when leaves are wet to prevent disease spread.",
-    "Practice crop rotation and use disease-free certified seed.",
-    "Monitor weather conditions — apply preventive sprays before rainy periods.",
+    "Spray fungicide early in the season to prevent spots.",
+    "Check plants regularly for brown spots.",
+    "Before rain, spray again to prevent more spots.",
+    "Remove leaves with many spots.",
+    "Use disease-free seeds and rotate crops.",
   ],
   Streak_Virus: [
-    "Control leafhopper vectors with systemic insecticides (e.g., imidacloprid).",
-    "Remove and destroy infected plants immediately to prevent virus spread.",
-    "Plant resistant maize varieties — this is the most effective control measure.",
-    "Avoid planting near infected fields or grassy areas that harbor leafhoppers.",
-    "Delay planting to avoid peak leafhopper activity periods.",
+    "Plant virus-resistant maize varieties (this works best).",
+    "Plant at a time when leafhoppers are not active.",
+    "Spray to kill leafhoppers that spread the virus.",
+    "Remove and destroy infected plants immediately.",
+    "Don't plant near infected fields or grassy areas.",
   ],
   Healthy: [
-    "Your crop looks healthy — keep up the good agronomic practices.",
-    "Continue regular scouting (at least weekly) to catch issues early.",
-    "Maintain balanced fertiliser application and adequate irrigation.",
+    "Keep doing good farming practices.",
+    "Check your plants every week for problems.",
+    "Water and fertilize your crops properly.",
   ],
 };
 
@@ -93,6 +96,89 @@ const DEFAULT_ADVICE = [
   "Monitor your crop closely over the next 7–14 days.",
   "Isolate visibly affected plants to prevent further spread.",
   "Keep field records to track disease progression.",
+];
+
+// ─── Prevention lookup per disease ─────────────────────────────────────────────
+const DISEASE_PREVENTION: Record<string, string[]> = {
+  Common_Rust: [
+    "Use rust-resistant maize varieties.",
+    "Rotate crops to break the rust cycle.",
+    "Clean farm tools and equipment between fields.",
+    "Avoid planting near previous rust-infected fields.",
+  ],
+  Northern_Leaf_Blight: [
+    "Plant resistant or tolerant varieties.",
+    "Rotate with non-host crops for 2+ seasons.",
+    "Remove crop debris immediately after harvest.",
+    "Space plants well to allow air circulation.",
+  ],
+  Fall_Armyworm: [
+    "Scout crops regularly during season.",
+    "Grow trap crops (like chickpea) around maize fields.",
+    "Keep field edges clean of grasses.",
+    "Grow diverse crops to support natural predators.",
+  ],
+  Gray_Leaf_Spot: [
+    "Use resistant maize hybrids.",
+    "Rotate crops for at least 2 seasons.",
+    "Space plants properly for air circulation.",
+    "Remove and destroy all infected crop debris.",
+  ],
+  Ear_Rot: [
+    "Choose resistant or tolerant varieties.",
+    "Plant at recommended spacing.",
+    "Manage moisture with proper drainage.",
+    "Rotate crops to reduce soil inoculum.",
+  ],
+  Stem_Borer: [
+    "Plant resistant varieties where available.",
+    "Rotate crops with non-host plants.",
+    "Remove all crop residues from field.",
+    "Plant trap crops (like Napier grass) around fields.",
+  ],
+  Grasshopper: [
+    "Keep field borders clean and mowed.",
+    "Maintain good field hygiene.",
+    "Grow diverse crops to attract predators.",
+    "Monitor fields regularly during risk periods.",
+  ],
+  Leaf_Beetle: [
+    "Plant beetle-resistant varieties.",
+    "Rotate with different crops.",
+    "Clean field borders and remove weeds.",
+    "Remove crop debris after harvest.",
+  ],
+  Leaf_Blight: [
+    "Plant disease-resistant varieties.",
+    "Improve field drainage to reduce wetness.",
+    "Rotate with non-susceptible crops.",
+    "Space plants well for air circulation.",
+  ],
+  Leaf_Spot: [
+    "Use disease-free certified seeds.",
+    "Rotate crops to reduce disease buildup.",
+    "Space plants for good air flow.",
+    "Avoid planting in disease hotspots from previous seasons.",
+  ],
+  Streak_Virus: [
+    "Plant virus-resistant varieties (most effective).",
+    "Control leafhopper populations with scout practices.",
+    "Delay planting to avoid peak leafhopper activity.",
+    "Keep fields free of grasses that harbor leafhoppers.",
+  ],
+  Healthy: [
+    "Continue good farming practices.",
+    "Use disease-resistant varieties.",
+    "Maintain proper spacing and irrigation.",
+    "Keep farm records to monitor trends.",
+  ],
+};
+
+const DEFAULT_PREVENTION = [
+  "Plant resistant varieties when available.",
+  "Rotate crops with different plant families.",
+  "Maintain good field hygiene.",
+  "Scout fields regularly for early detection.",
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -180,6 +266,7 @@ export async function detectDisease(file: File): Promise<DiagnosticReport> {
   // Advice: use lookup for the top prediction, fall back to defaults
   const topKey = json.prediction as string | undefined;
   const advice = DISEASE_ADVICE[topKey ?? ""] ?? DEFAULT_ADVICE;
+  const prevention = DISEASE_PREVENTION[topKey ?? ""] ?? DEFAULT_PREVENTION;
 
   // Crop type: the model currently detects maize diseases
   const cropType = "Maize (Zea mays)";
@@ -189,6 +276,7 @@ export async function detectDisease(file: File): Promise<DiagnosticReport> {
     diagnosedAt: new Date().toISOString(),
     diseases,
     advice,
+    prevention,
     urgency: deriveUrgency(diseases),
   };
 }
