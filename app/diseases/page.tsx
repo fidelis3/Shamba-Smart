@@ -254,6 +254,21 @@ export default function DiseasesPage() {
                   </div>
                 </div>
 
+                {/* Prevention Section */}
+                {report.prevention && report.prevention.length > 0 && (
+                  <section className="rounded-2xl border border-[#79ae49]/15 dark:border-[#79ae49]/20 bg-gradient-to-br from-[#d4e8c1]/10 to-[#c5e8a0]/5 dark:from-[#1a2b18] dark:to-[#0f1e0d] p-4 sm:p-5">
+                    <h4 className="text-sm font-bold text-[#2d5c22] dark:text-[#b8dfaa] mb-3">Next Season Prevention</h4>
+                    <ul className="space-y-2">
+                      {report.prevention.map((tip, i) => (
+                        <li key={`${tip}-${i}`} className="flex items-start gap-2 text-[12px] sm:text-sm text-[#2d5c22] dark:text-[#9fd387]">
+                          <span className="shrink-0 text-[#79ae49] dark:text-[#b6df8c] font-bold mt-0.5">•</span>
+                          <span>{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+
                 {doneImages.length > 1 && (
                   <div className="mt-4">
                     <p className="mono text-[11px] uppercase tracking-[.1em] text-[#4c6652] dark:text-[#8aa68f] mb-2">Other Uploads</p>

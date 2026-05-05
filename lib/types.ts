@@ -21,6 +21,7 @@ export interface DiagnosticReport {
   cropType: string;
   diseases: DiseaseResult[];
   advice: string[];
+  prevention: string[];
   urgency: "monitor" | "treat-soon" | "treat-immediately";
   diagnosedAt: string;
 }
