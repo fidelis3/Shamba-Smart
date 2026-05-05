@@ -20,6 +20,11 @@ export function generateMockReport(): DiagnosticReport {
       "Rotate to a non-host crop next season to break the disease cycle.",
       "Scout neighbouring fields; escalate treatment if >50% of plants show lesions.",
     ],
+    prevention: [
+      "Use disease-resistant seed varieties where available.",
+      "Rotate crops to reduce pathogen buildup in the soil.",
+      "Ensure adequate spacing and airflow between plants.",
+    ],
   };
 }
 
